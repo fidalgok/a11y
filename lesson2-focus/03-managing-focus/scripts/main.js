@@ -14,13 +14,23 @@ page('/:slug', function(context) {
   oldPage.classList.remove('is-active');
 
   // Add is-active class to new menu item and section using the URL slug
-  var newMenuItem = document.querySelector('#menu [data-page='+slug+']');
-  var newPage = document.querySelector('main [data-page='+slug+']');
+  var newMenuItem = document.querySelector('#menu [data-page=' + slug + ']');
+  var newPage = document.querySelector('main [data-page=' + slug + ']');
   newMenuItem.classList.add('is-active');
   newPage.classList.add('is-active');
-
 });
 
 page({
   hashbang: true
+});
+
+var nav = document.querySelector('nav');
+
+nav.addEventListener('click', function(e) {
+  setTimeout(function() {
+    console.log('fired');
+    var heading = document.querySelector('div.is-active').querySelector('h2');
+    heading.tabIndex = -1;
+    heading.focus();
+  }, 200);
 });
