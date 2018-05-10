@@ -18,19 +18,16 @@ page('/:slug', function(context) {
   var newPage = document.querySelector('main [data-page=' + slug + ']');
   newMenuItem.classList.add('is-active');
   newPage.classList.add('is-active');
+  const heading = newPage.querySelector('h2');
+  if (isFirstPage) {
+    isFirstPage = false;
+    return;
+  }
+  heading.tabIndex = -1;
+
+  heading.focus();
 });
 
 page({
   hashbang: true
-});
-
-var nav = document.querySelector('nav');
-
-nav.addEventListener('click', function(e) {
-  setTimeout(function() {
-    console.log('fired');
-    var heading = document.querySelector('div.is-active').querySelector('h2');
-    heading.tabIndex = -1;
-    heading.focus();
-  }, 200);
 });

@@ -19,15 +19,33 @@ a:focus {
 .nav > li > a:focus {
   text-decoration: none;
   background: transparent;
+
+  box-shadow: 0 0 3px 3px #008b00;
 }
 
 .jumbotron .mdl-button {
   background-color: #008b00;
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+.jumbotron .mdl-button:hover,
+.jumbotron .mdl-button:focus {
+  background-color: #008b00;
+  color: #ffffff;
+}
+
+.jumbotron .mdl-button:focus {
+  outline: 0;
+  box-shadow: 0 0 3px 3px #333;
 }
 
 .mdl-button.raised {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
-              0 3px 1px -2px rgba(0, 0, 0, .2),
-              0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.mdl-button.raised:hover,
+.mdl-button.raised:focus {
+  background-color: #008b00;
+  color: #ffffff;
 }

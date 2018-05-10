@@ -22,7 +22,8 @@ function openModal(e) {
   closeButton.addEventListener('click', closeModal);
 
   // Find all focusable children
-  var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+  var focusableElementsString =
+    'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
   var focusableElements = modal.querySelectorAll(focusableElementsString);
   // Convert NodeList to Array
   focusableElements = Array.prototype.slice.call(focusableElements);
@@ -34,13 +35,14 @@ function openModal(e) {
   modal.style.display = 'block';
   modalOverlay.style.display = 'block';
 
+  //hide the wrapper container
+  document.querySelector('.wrapper').setAttribute('aria-hidden', true);
   // Focus first child
   firstTabStop.focus();
 
   function trapTabKey(e) {
     // Check for TAB key press
     if (e.keyCode === 9) {
-
       // SHIFT + TAB
       if (e.shiftKey) {
         if (document.activeElement === firstTabStop) {
@@ -48,7 +50,7 @@ function openModal(e) {
           lastTabStop.focus();
         }
 
-      // TAB
+        // TAB
       } else {
         if (document.activeElement === lastTabStop) {
           e.preventDefault();
@@ -62,8 +64,6 @@ function openModal(e) {
       closeModal();
     }
   }
-
-  // FIXME: hide non-modal content from screen readers
 }
 
 function closeModal() {
@@ -75,4 +75,5 @@ function closeModal() {
   focusedElementBeforeModal.focus();
 
   // FIXME: don't forget to make main content screen reader accessible again.
+  document.querySelector('.wrapper').setAttribute('aria-hidden', false);
 }

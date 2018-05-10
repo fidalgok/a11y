@@ -22,7 +22,8 @@ function openModal() {
   signUpBtn.addEventListener('click', closeModal);
 
   // Find all focusable children
-  var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+  var focusableElementsString =
+    'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
   var focusableElements = modal.querySelectorAll(focusableElementsString);
   // Convert NodeList to Array
   focusableElements = Array.prototype.slice.call(focusableElements);
@@ -40,19 +41,27 @@ function openModal() {
   function trapTabKey(e) {
     // Check for TAB key press
     if (e.keyCode === 9) {
-
       // SHIFT + TAB
       if (e.shiftKey) {
-
-      // TAB
+        if (document.activeElement === firstTabStop) {
+          //don't let the key press send focus to other elements on the page
+          e.preventDefault();
+          lastTabStop.focus();
+        }
+        // TAB
       } else {
-
+        if (document.activeElement === lastTabStop) {
+          //don't let the key press send focus to other elements on the page
+          e.preventDefault();
+          firstTabStop.focus();
+        } else {
+        }
       }
     }
 
     // ESCAPE
     if (e.keyCode === 27) {
-
+      closeModal();
     }
   }
 }
